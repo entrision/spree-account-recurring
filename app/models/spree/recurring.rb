@@ -4,6 +4,9 @@ module Spree
 
     acts_as_restrictive_destroyer
 
+    preference :secret_key, :string
+    preference :public_key, :string
+
     has_many :plans
     attr_readonly :type
     validates :type, :name, presence: true
@@ -21,14 +24,6 @@ module Spree
 
     def default_plan
       plans.default
-    end
-
-    def preferred_secret_key
-      preferences[:secret_key]
-    end
-
-    def preferred_public_key
-      preferences[:public_key]
     end
 
     def has_preferred_keys?
